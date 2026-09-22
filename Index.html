@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flores amarillas 🌻</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#fff9d6, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor {
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  padding: 30px 24px;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+h1 {
+  color: #6b4d00;
+  margin-top: 0;
+}
+
+p {
+  color: #6d5a24;
+}
+
+button {
+  border: none;
+  background: #f5c518;
+  color: #4d3900;
+  padding: 16px 25px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.girasol {
+  position: absolute;
+  font-size: 55px;
+  animation: aparecer 0.7s ease-out;
+  pointer-events: none;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0) rotate(-30deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.ocultar {
+  animation: desaparecer 0.8s forwards;
+}
+
+@keyframes desaparecer {
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor" id="contenedor">
+  <h1>Para ti 🌻</h1>
+  <p>Presiona el botón y deja que florezca la pantalla.</p>
+
+  <button onclick="llenarDeGirasoles()">
+    Llenar de girasoles 🌻
+  </button>
+</div>
+
+<script>
+function llenarDeGirasoles() {
+
+  document.getElementById("contenedor")
+    .classList.add("ocultar");
+
+  let cantidad = 0;
+
+  const intervalo = setInterval(function() {
+
+    for (let i = 0; i < 5; i++) {
+
+      const girasol = document.createElement("div");
+
+      girasol.className = "girasol";
+      girasol.innerHTML = "🌻";
+
+      girasol.style.left =
+        Math.random() * 95 + "vw";
+
+      girasol.style.top =
+        Math.random() * 90 + "vh";
+
+      girasol.style.transform =
+        "rotate(" + (Math.random() * 40 - 20) + "deg)";
+
+      document.body.appendChild(girasol);
+
+      cantidad++;
+    }
+
+    if (cantidad >= 100) {
+      clearInterval(intervalo);
+    }
+
+  }, 50);
+}
+</script>
+
+</body>
+</html>
